@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Clima Organizacional</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <h1>📊 Pesquisa de Clima Organizacional</h1>
+                <p>Esta pesquisa é ANÔNIMA e confidencial. Seu feedback sincero nos ajuda a melhorar o ambiente de trabalho para todos.</p>
+            </div>
+
+            <div class="form-progress">
+                <div class="form-progress-bar" id="progressBar" style="width: 0%"></div>
+            </div>
+
+            <form id="climaForm" class="form-body">
+                <!-- Pergunta 1 -->
+                <div class="question-slide active" data-question="1">
+                    <div class="question-number">Pergunta 1 de 18</div>
+                    <div class="question-text">Há quanto tempo você trabalha na empresa?</div>
+                    <div class="option-group">
+                        <div class="option-item">
+                            <input type="radio" name="q1" id="q1_a" value="menos_6meses" required>
+                            <label class="option-label" for="q1_a">Menos de 6 meses</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" name="q1" id="q1_b" value="6meses_1ano">
+                            <label class="option-label" for="q1_b">6 meses a 1 ano</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" name="q1" id="q1_c" value="1_2anos">
+                            <label class="option-label" for="q1_c">1 a 2 anos</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" name="q1" id="q1_d" value="mais_2anos">
+                            <label class="option-label" for="q1_d">Mais de 2 anos</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pergunta 2 -->
+                <div class="question-slide" data-question="2">
+                    <div class="question-number">Pergunta 2 de 18</div>
+                    <div class="question-text">Qual sua área de atuação?</div>
+                    <div class="option-group">
+                        <div class="option-item">
+                            <input type="radio" name="q2" id="q2_a" value="recepcao" required>
+                            <label class="option-label" for="q2_a">Recepção</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" name="q2" id="q2_b" value="vendas">
+                            <label class="option-label" for="q2_b">Consultoria/Vendas</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" name="q2" id="q2_c" value="tecnico">
+                            <label class="option-label" for="q2_c">Procedimentos técnicos (injetores)</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" name="q2" id="q2_d" value="gestao">
+                            <label class="option-label" for="q2_d">Coordenação/Gestão</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" name="q2" id="q2_e" value="outro">
+                            <label class="option-label" for="q2_e">Outro</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perguntas 3-14: Escala 1-5 -->
+                <div class="question-slide" data-question="3">
+                    <div class="question-number">Pergunta 3 de 18</div>
+                    <div class="question-text">Tenho clareza sobre o que é esperado de mim no trabalho</div>
+                    <div class="scale-container">
+                        <div class="scale-item">
+                            <input type="radio" name="q3" id="q3_1" value="1" required>
+                            <label class="scale-label" for="q3_1">
+                                <span class="scale-number">1</span>
+                                <span class="scale-text">Discordo totalmente</span>
+                            </label>
+                        </div>
+                        <div class="scale-item">
+                            <input type="radio" name="q3" id="q3_2" value="2">
+                            <label class="scale-label" for="q3_2">
+                                <span class="scale-number">2</span>
+                            </label>
+                        </div>
+                        <div class="scale-item">
+                            <input type="radio" name="q3" id="q3_3" value="3">
+                            <label class="scale-label" for="q3_3">
+                                <span class="scale-number">3</span>
+                            </label>
+                        </div>
+                        <div class="scale-item">
+                            <input type="radio" name="q3" id="q3_4" value="4">
+                            <label class="scale-label" for="q3_4">
+                                <span class="scale-number">4</span>
+                            </label>
+                        </div>
+                        <div class="scale-item">
+                            <input type="radio" name="q3" id="q3_5" value="5">
+                            <label class="scale-label" for="q3_5">
+                                <span class="scale-number">5</span>
+                                <span class="scale-text">Concordo totalmente</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continua até pergunta 18... vou adicionar dinamicamente -->
+
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-back nav-btn" id="btnVoltar" style="display:none">⬅️ Voltar</button>
+                    <button type="button" class="btn btn-primary nav-btn" id="btnProximo">Próximo ➡️</button>
+                    <button type="submit" class="btn btn-primary nav-btn" id="btnEnviar" style="display:none">✓ Enviar Respostas</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/clima-questions.js"></script>
+</body>
+</html>

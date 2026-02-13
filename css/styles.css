@@ -1,0 +1,704 @@
+/* ============================================
+   SISTEMA DE AVALIAÇÃO - DESIGN MODERNO
+   ============================================ */
+
+:root {
+    /* Cores principais */
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    --secondary: #8b5cf6;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    
+    /* Cores neutras */
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    
+    /* Espaçamentos */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Tipografia */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    
+    /* Bordas */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    
+    /* Sombras */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   RESET E BASE
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--gray-800);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    margin-bottom: 3rem;
+}
+
+.hero-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 3rem 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--gray-600);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   FORMS GRID
+   ============================================ */
+
+.forms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.form-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.form-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.form-card:hover::before {
+    transform: scaleX(1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.card-badge {
+    padding: 0.25rem 0.75rem;
+    background: var(--gray-100);
+    color: var(--gray-700);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.75rem;
+}
+
+.card-description {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.card-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.meta-item {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.card-status {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-200);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.status-badge.pending {
+    background: var(--gray-100);
+    color: var(--gray-600);
+}
+
+.status-badge.in-progress {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-badge.completed {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    width: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(99, 102, 241, 0.3);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--gray-700);
+    border: 2px solid var(--gray-300);
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--gray-50);
+}
+
+/* ============================================
+   ADMIN SECTION
+   ============================================ */
+
+.admin-section {
+    margin-bottom: 3rem;
+}
+
+.admin-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+}
+
+.admin-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+}
+
+.admin-card p {
+    color: var(--gray-600);
+    margin-bottom: 1.5rem;
+}
+
+.admin-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.admin-buttons .btn {
+    width: auto;
+    min-width: 150px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: white;
+}
+
+.footer p {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.footer-meta {
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+/* ============================================
+   FORMULÁRIOS (Páginas internas)
+   ============================================ */
+
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.form-wrapper {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+}
+
+.form-header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.form-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.form-progress {
+    background: var(--gray-100);
+    height: 6px;
+}
+
+.form-progress-bar {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.form-body {
+    padding: 3rem 2rem;
+}
+
+.question-slide {
+    display: none;
+    animation: slideIn 0.3s ease;
+}
+
+.question-slide.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.question-number {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.question-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.question-description {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+/* ============================================
+   INPUTS DO FORMULÁRIO
+   ============================================ */
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-label {
+    display: block;
+    font-weight: 500;
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+}
+
+.input-text,
+.input-textarea,
+.input-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+    font-family: var(--font-sans);
+}
+
+.input-text:focus,
+.input-textarea:focus,
+.input-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.input-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Radio e Checkbox personalizados */
+.option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.option-item {
+    position: relative;
+}
+
+.option-item input[type="radio"],
+.option-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.option-label {
+    display: block;
+    padding: 1rem 1.25rem;
+    border: 2px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.option-item input:checked + .option-label {
+    border-color: var(--primary);
+    background: var(--gray-50);
+    color: var(--primary);
+}
+
+.option-label:hover {
+    border-color: var(--primary-light);
+    background: var(--gray-50);
+}
+
+/* Escala (Rating) */
+.scale-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin: 2rem 0;
+}
+
+.scale-item {
+    flex: 1;
+    text-align: center;
+}
+
+.scale-item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.scale-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+    border: 2px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+}
+
+.scale-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-600);
+}
+
+.scale-text {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+}
+
+.scale-item input:checked + .scale-label {
+    border-color: var(--primary);
+    background: var(--primary);
+}
+
+.scale-item input:checked + .scale-label .scale-number,
+.scale-item input:checked + .scale-label .scale-text {
+    color: white;
+}
+
+.scale-label:hover {
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   NAVEGAÇÃO DO FORMULÁRIO
+   ============================================ */
+
+.form-navigation {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.nav-btn {
+    flex: 1;
+}
+
+.btn-back {
+    background: var(--gray-100);
+    color: var(--gray-700);
+}
+
+.btn-back:hover {
+    background: var(--gray-200);
+}
+
+/* ============================================
+   MENSAGENS
+   ============================================ */
+
+.alert {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+}
+
+.alert-success {
+    background: #d1fae5;
+    border-left: 4px solid var(--success);
+    color: #065f46;
+}
+
+.alert-info {
+    background: #dbeafe;
+    border-left: 4px solid var(--primary);
+    color: #1e40af;
+}
+
+/* ============================================
+   DASHBOARD
+   ============================================ */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.chart-container {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+}
+
+.chart-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+    
+    .hero-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .forms-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .scale-container {
+        flex-wrap: wrap;
+    }
+    
+    .scale-item {
+        min-width: calc(20% - 0.5rem);
+    }
+    
+    .admin-buttons {
+        flex-direction: column;
+    }
+    
+    .admin-buttons .btn {
+        width: 100%;
+    }
+}
+
+/* ============================================
+   ANIMAÇÕES
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease;
+}

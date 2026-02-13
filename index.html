@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Avaliação Organizacional</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Sistema de Avaliação Organizacional</h1>
+                <p class="hero-subtitle">Ciclo de Avaliação 2025 - Sua opinião é fundamental para construirmos um ambiente de trabalho melhor</p>
+            </div>
+        </header>
+
+        <!-- Cards de Formulários -->
+        <section class="forms-grid">
+            <div class="form-card" data-status="pending">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <div class="card-badge">Anônimo</div>
+                </div>
+                <h2 class="card-title">Pesquisa de Clima</h2>
+                <p class="card-description">Avalie o ambiente de trabalho, liderança e oportunidades de crescimento</p>
+                <div class="card-meta">
+                    <span class="meta-item">⏱️ 5-7 min</span>
+                    <span class="meta-item">📝 15 perguntas</span>
+                </div>
+                <a href="clima.html" class="btn btn-primary">Iniciar Pesquisa</a>
+                <div class="card-status" id="status-clima">
+                    <span class="status-badge pending">Pendente</span>
+                </div>
+            </div>
+
+            <div class="form-card" data-status="pending">
+                <div class="card-header">
+                    <div class="card-icon">📈</div>
+                    <div class="card-badge">Individual</div>
+                </div>
+                <h2 class="card-title">Autoavaliação</h2>
+                <p class="card-description">Reflita sobre seu desempenho, resultados e áreas de desenvolvimento</p>
+                <div class="card-meta">
+                    <span class="meta-item">⏱️ 10-12 min</span>
+                    <span class="meta-item">📝 20 perguntas</span>
+                </div>
+                <a href="autoavaliacao.html" class="btn btn-primary">Fazer Autoavaliação</a>
+                <div class="card-status" id="status-auto">
+                    <span class="status-badge pending">Pendente</span>
+                </div>
+            </div>
+
+            <div class="form-card" data-status="pending">
+                <div class="card-header">
+                    <div class="card-icon">🔄</div>
+                    <div class="card-badge">Confidencial</div>
+                </div>
+                <h2 class="card-title">Avaliação 360º</h2>
+                <p class="card-description">Avalie seus colegas de trabalho de forma construtiva e anônima</p>
+                <div class="card-meta">
+                    <span class="meta-item">⏱️ 5-7 min por pessoa</span>
+                    <span class="meta-item">📝 Por colega</span>
+                </div>
+                <a href="avaliacao360.html" class="btn btn-primary">Avaliar Colegas</a>
+                <div class="card-status" id="status-360">
+                    <span class="status-badge pending">Pendente</span>
+                </div>
+            </div>
+
+            <div class="form-card" data-status="pending">
+                <div class="card-header">
+                    <div class="card-icon">🧠</div>
+                    <div class="card-badge">Individual</div>
+                </div>
+                <h2 class="card-title">Perfil DISC</h2>
+                <p class="card-description">Entenda seu estilo de trabalho e como maximizar suas forças</p>
+                <div class="card-meta">
+                    <span class="meta-item">⏱️ 5-8 min</span>
+                    <span class="meta-item">📝 21 perguntas</span>
+                </div>
+                <a href="disc.html" class="btn btn-primary">Descobrir Perfil</a>
+                <div class="card-status" id="status-disc">
+                    <span class="status-badge pending">Pendente</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Section -->
+        <section class="admin-section">
+            <div class="admin-card">
+                <h3>Área Administrativa</h3>
+                <p>Acesse os dashboards e relatórios de análise</p>
+                <div class="admin-buttons">
+                    <a href="dashboard.html" class="btn btn-secondary">📊 Dashboard</a>
+                    <a href="relatorios.html" class="btn btn-secondary">📈 Relatórios</a>
+                    <button onclick="exportarDados()" class="btn btn-secondary">💾 Exportar Dados</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Sistema de Avaliação Organizacional - Conformidade NR-1</p>
+            <p class="footer-meta">Dados armazenados localmente | 100% Confidencial</p>
+        </footer>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Atualizar status dos formulários ao carregar página
+        window.addEventListener('DOMContentLoaded', () => {
+            atualizarStatusFormularios();
+        });
+
+        function atualizarStatusFormularios() {
+            const formulariosStatus = {
+                clima: localStorage.getItem('clima_completed'),
+                auto: localStorage.getItem('autoavaliacao_completed'),
+                disc: localStorage.getItem('disc_completed')
+            };
+
+            // Clima
+            if (formulariosStatus.clima) {
+                document.getElementById('status-clima').innerHTML = 
+                    '<span class="status-badge completed">✓ Concluído</span>';
+            }
+
+            // Autoavaliação
+            if (formulariosStatus.auto) {
+                document.getElementById('status-auto').innerHTML = 
+                    '<span class="status-badge completed">✓ Concluído</span>';
+            }
+
+            // DISC
+            if (formulariosStatus.disc) {
+                document.getElementById('status-disc').innerHTML = 
+                    '<span class="status-badge completed">✓ Concluído</span>';
+            }
+
+            // 360º - contar quantas avaliações foram feitas
+            const avaliacoes360 = JSON.parse(localStorage.getItem('avaliacoes_360') || '[]');
+            if (avaliacoes360.length > 0) {
+                document.getElementById('status-360').innerHTML = 
+                    `<span class="status-badge in-progress">${avaliacoes360.length} avaliações feitas</span>`;
+            }
+        }
+
+        function exportarDados() {
+            const dados = {
+                clima: JSON.parse(localStorage.getItem('respostas_clima') || '[]'),
+                autoavaliacoes: JSON.parse(localStorage.getItem('autoavaliacoes') || '[]'),
+                avaliacoes360: JSON.parse(localStorage.getItem('avaliacoes_360') || '[]'),
+                disc: JSON.parse(localStorage.getItem('respostas_disc') || '[]')
+            };
+
+            const dataStr = JSON.stringify(dados, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `dados_avaliacao_${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            alert('✓ Dados exportados com sucesso!');
+        }
+    </script>
+    
+    <script src="js/auth.js"></script>
+    <script>
+        // Adicionar proteção aos links administrativos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Proteger link do dashboard
+            const linkDashboard = document.querySelector('a[href="dashboard.html"]');
+            if (linkDashboard) {
+                linkDashboard.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (verificarLogin()) {
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        window.location.href = 'login.html?redirect=dashboard.html';
+                    }
+                });
+            }
+            
+            // Proteger link de relatórios
+            const linkRelatorios = document.querySelector('a[href="relatorios.html"]');
+            if (linkRelatorios) {
+                linkRelatorios.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (verificarLogin()) {
+                        window.location.href = 'relatorios.html';
+                    } else {
+                        window.location.href = 'login.html?redirect=relatorios.html';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

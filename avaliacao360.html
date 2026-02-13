@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação 360º</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <h1>🔄 Avaliação 360º</h1>
+                <p>Avalie seus colegas de forma construtiva. Suas respostas são CONFIDENCIAIS - apenas a gestão verá quem avaliou quem. O avaliado receberá apenas o consolidado anônimo.</p>
+            </div>
+
+            <div class="form-progress">
+                <div class="form-progress-bar" id="progressBar" style="width: 0%"></div>
+            </div>
+
+            <form id="avaliacao360Form" class="form-body">
+                <!-- Perguntas serão inseridas dinamicamente -->
+                
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-back nav-btn" id="btnVoltar" style="display:none">⬅️ Voltar</button>
+                    <button type="button" class="btn btn-primary nav-btn" id="btnProximo">Próximo ➡️</button>
+                    <button type="submit" class="btn btn-primary nav-btn" id="btnEnviar" style="display:none">✓ Enviar Avaliação</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="alert alert-info" style="margin-top: 2rem; text-align: center;">
+            <strong>💡 Dica:</strong> Você pode avaliar várias pessoas! Após enviar, clique no link novamente para avaliar outra pessoa.
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/avaliacao360-questions.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoavaliação de Performance</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <h1>📈 Autoavaliação de Performance</h1>
+                <p>Reflita sobre seu desempenho nos últimos meses com honestidade. Tempo estimado: 10-12 minutos.</p>
+            </div>
+
+            <div class="form-progress">
+                <div class="form-progress-bar" id="progressBar" style="width: 0%"></div>
+            </div>
+
+            <form id="autoavaliacaoForm" class="form-body">
+                <!-- Perguntas serão inseridas dinamicamente via JavaScript -->
+                
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-back nav-btn" id="btnVoltar" style="display:none">⬅️ Voltar</button>
+                    <button type="button" class="btn btn-primary nav-btn" id="btnProximo">Próximo ➡️</button>
+                    <button type="submit" class="btn btn-primary nav-btn" id="btnEnviar" style="display:none">✓ Enviar Autoavaliação</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/autoavaliacao-questions.js"></script>
+</body>
+</html>

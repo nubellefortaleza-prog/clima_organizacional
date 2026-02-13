@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Análise de Dados</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="form-container" style="max-width: 1400px;">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <h1>📊 Dashboard de Análise</h1>
+                <p>Visão consolidada de todos os dados coletados</p>
+                <div style="margin-top: 1rem;">
+                    <a href="index.html" class="btn btn-secondary" style="display: inline-block; width: auto;">⬅️ Voltar</a>
+                    <button onclick="atualizarDashboard()" class="btn btn-primary" style="display: inline-block; width: auto; margin-left: 1rem;">🔄 Atualizar Dados</button>
+                    <button onclick="exportarRelatorio()" class="btn btn-secondary" style="display: inline-block; width: auto; margin-left: 0.5rem;">📥 Exportar Relatório</button>
+                    <button onclick="fazerLogout()" class="btn btn-secondary" style="display: inline-block; width: auto; margin-left: 0.5rem; background: #ef4444; color: white;">🔓 Sair</button>
+                </div>
+            </div>
+
+            <div class="form-body" style="padding: 2rem;">
+                
+                <!-- KPIs Principais -->
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Participação Clima</div>
+                        <div class="stat-value" id="kpi-clima">-</div>
+                        <div style="font-size: 0.875rem; color: var(--gray-500); margin-top: 0.5rem;" id="kpi-clima-percent">- de 12</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">eNPS</div>
+                        <div class="stat-value" id="kpi-enps">-</div>
+                        <div style="font-size: 0.875rem; color: var(--gray-500); margin-top: 0.5rem;" id="kpi-enps-status">-</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Clima Geral</div>
+                        <div class="stat-value" id="kpi-clima-score">-</div>
+                        <div style="font-size: 0.875rem; color: var(--gray-500); margin-top: 0.5rem;">de 5.0</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Avaliações 360º</div>
+                        <div class="stat-value" id="kpi-360">-</div>
+                        <div style="font-size: 0.875rem; color: var(--gray-500); margin-top: 0.5rem;" id="kpi-360-status">avaliações feitas</div>
+                    </div>
+                </div>
+
+                <!-- Alertas -->
+                <div id="alertas-container" style="margin-bottom: 2rem;"></div>
+
+                <!-- Gráficos -->
+                <div class="chart-container">
+                    <div class="chart-title">📊 Dimensões do Clima Organizacional</div>
+                    <canvas id="chartClima" style="max-height: 400px;"></canvas>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                    <div class="chart-container">
+                        <div class="chart-title">📈 eNPS - Distribuição</div>
+                        <canvas id="chartENPS"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <div class="chart-title">🔄 Competências 360º (Média)</div>
+                        <canvas id="chart360"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container" style="margin-top: 2rem;">
+                    <div class="chart-title">👥 Ranking de Colaboradores (360º - Top 10)</div>
+                    <canvas id="chartRanking"></canvas>
+                </div>
+
+                <!-- Análises Qualitativas -->
+                <div class="chart-container" style="margin-top: 2rem;">
+                    <div class="chart-title">💬 Principais Feedbacks - Clima Organizacional</div>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <h3 style="color: var(--success); margin-bottom: 1rem;">🌟 Forças Organizacionais</h3>
+                        <div id="forcas-lista" style="padding: 1rem; background: var(--gray-50); border-radius: var(--radius-md); min-height: 100px;">
+                            <p style="color: var(--gray-500);">Carregando feedbacks...</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <h3 style="color: var(--danger); margin-bottom: 1rem;">⚠️ Gaps Críticos</h3>
+                        <div id="gaps-lista" style="padding: 1rem; background: var(--gray-50); border-radius: var(--radius-md); min-height: 100px;">
+                            <p style="color: var(--gray-500);">Carregando feedbacks...</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard-charts.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios Individuais</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="form-container" style="max-width: 1200px;">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <h1>📈 Relatórios Individuais</h1>
+                <p>Visualize relatórios detalhados por colaborador</p>
+                <div style="margin-top: 1rem;">
+                    <a href="index.html" class="btn btn-secondary" style="display: inline-block; width: auto;">⬅️ Voltar</a>
+                    <button onclick="exportarTodosRelatorios()" class="btn btn-primary" style="display: inline-block; width: auto; margin-left: 1rem;">📥 Exportar Todos</button>
+                    <button onclick="fazerLogout()" class="btn btn-secondary" style="display: inline-block; width: auto; margin-left: 0.5rem; background: #ef4444; color: white;">🔓 Sair</button>
+                </div>
+            </div>
+
+            <div class="form-body" style="padding: 2rem;">
+                
+                <!-- Seletor de Colaborador -->
+                <div class="input-group" style="margin-bottom: 2rem;">
+                    <label class="input-label" for="selectColaborador">Selecione um colaborador:</label>
+                    <select id="selectColaborador" class="input-select" onchange="carregarRelatorio()">
+                        <option value="">Escolha...</option>
+                    </select>
+                </div>
+
+                <!-- Relatório Individual -->
+                <div id="relatorio-container" style="display: none;">
+                    
+                    <!-- Cabeçalho do Relatório -->
+                    <div class="chart-container">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                            <div>
+                                <h2 id="relatorio-nome" style="margin: 0; color: var(--gray-900);"></h2>
+                                <p id="relatorio-cargo" style="margin: 0.5rem 0 0 0; color: var(--gray-600);"></p>
+                            </div>
+                            <button onclick="exportarRelatorioIndividual()" class="btn btn-secondary" style="width: auto;">📄 Exportar PDF</button>
+                        </div>
+
+                        <!-- KPIs do Colaborador -->
+                        <div class="dashboard-grid">
+                            <div class="stat-card">
+                                <div class="stat-label">Avaliações Recebidas</div>
+                                <div class="stat-value" id="rel-avaliacoes">-</div>
+                                <div style="font-size: 0.875rem; color: var(--gray-500); margin-top: 0.5rem;">360º</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-label">Média Geral</div>
+                                <div class="stat-value" id="rel-media">-</div>
+                                <div style="font-size: 0.875rem; color: var(--gray-500); margin-top: 0.5rem;">de 5.0</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-label">Score Confiança</div>
+                                <div class="stat-value" id="rel-confianca">-</div>
+                                <div style="font-size: 0.875rem; color: var(--gray-500); margin-top: 0.5rem;">de 10.0</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-label">Ranking</div>
+                                <div class="stat-value" id="rel-ranking">-</div>
+                                <div style="font-size: 0.875rem; color: var(--gray-500); margin-top: 0.5rem;" id="rel-ranking-desc">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico Radar - Competências -->
+                    <div class="chart-container" style="margin-top: 2rem;">
+                        <div class="chart-title">🎯 Perfil de Competências (360º)</div>
+                        <canvas id="chartCompetencias"></canvas>
+                    </div>
+
+                    <!-- Feedbacks Qualitativos -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                        <div class="chart-container">
+                            <div class="chart-title">🌟 Pontos Fortes</div>
+                            <div id="rel-forcas" style="padding: 1rem; background: var(--gray-50); border-radius: var(--radius-md); min-height: 150px;">
+                                <p style="color: var(--gray-500);">Carregando...</p>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <div class="chart-title">💡 Oportunidades de Melhoria</div>
+                            <div id="rel-melhorias" style="padding: 1rem; background: var(--gray-50); border-radius: var(--radius-md); min-height: 150px;">
+                                <p style="color: var(--gray-500);">Carregando...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Autoavaliação (se houver) -->
+                    <div id="autoavaliacao-section" style="display: none; margin-top: 2rem;">
+                        <div class="chart-container">
+                            <div class="chart-title">📝 Autoavaliação</div>
+                            <div id="rel-autoavaliacao" style="padding: 1rem;">
+                                <!-- Será preenchido dinamicamente -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DISC (se houver) -->
+                    <div id="disc-section" style="display: none; margin-top: 2rem;">
+                        <div class="chart-container">
+                            <div class="chart-title">🧠 Perfil DISC</div>
+                            <div id="rel-disc" style="padding: 1rem;">
+                                <!-- Será preenchido dinamicamente -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Análise de Liderança (se aplicável) -->
+                    <div id="lideranca-section" style="display: none; margin-top: 2rem;">
+                        <div class="chart-container">
+                            <div class="chart-title">👔 Avaliação de Liderança</div>
+                            <div id="rel-lideranca" style="padding: 1rem;">
+                                <!-- Será preenchido dinamicamente -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Mensagem quando nenhum colaborador selecionado -->
+                <div id="mensagem-inicial" style="text-align: center; padding: 3rem; color: var(--gray-500);">
+                    <p style="font-size: 1.25rem; margin-bottom: 1rem;">👆 Selecione um colaborador acima para ver seu relatório detalhado</p>
+                    <p>Relatórios incluem: Competências 360º, Feedbacks, Autoavaliação e Perfil DISC</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/relatorios.js"></script>
+</body>
+</html>

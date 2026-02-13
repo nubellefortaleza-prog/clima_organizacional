@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Administrativo</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="form-container" style="max-width: 500px;">
+        <div class="form-wrapper">
+            <div class="form-header" style="text-align: center;">
+                <h1>🔐 Área Administrativa</h1>
+                <p>Digite a senha para acessar o dashboard e relatórios</p>
+            </div>
+
+            <div class="form-body" style="padding: 2rem;">
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label class="input-label" for="senha">Senha Administrativa:</label>
+                        <input type="password" id="senha" class="input-text" required autofocus placeholder="Digite a senha">
+                    </div>
+
+                    <div id="erro-container" style="display: none; padding: 1rem; background: #fee2e2; border-radius: 0.5rem; color: #991b1b; margin-bottom: 1rem;">
+                        <strong>❌ Senha incorreta!</strong> Tente novamente.
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
+
+                    <div style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-200);">
+                        <a href="index.html" style="color: var(--gray-600); text-decoration: none;">⬅️ Voltar para Página Inicial</a>
+                    </div>
+                </form>
+
+                <div style="margin-top: 2rem; padding: 1rem; background: var(--gray-50); border-radius: 0.5rem; font-size: 0.875rem; color: var(--gray-600);">
+                    <strong>💡 Senha padrão:</strong> admin123
+                    <br><br>
+                    <strong>⚙️ Para alterar a senha:</strong> Edite o arquivo <code>js/auth.js</code> e mude a variável <code>SENHA_ADMIN</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

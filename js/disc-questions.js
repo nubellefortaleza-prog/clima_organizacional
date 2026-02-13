@@ -147,10 +147,10 @@ const perguntasDISC = [
         tipo: "select",
         nome_campo: "reacao_problema",
         opcoes: [
-            "\"Vamos resolver isso agora!\" (ação imediata)",
-            "\"Deixa eu entender o que aconteceu...\" (análise)",
-            "\"Quem pode me ajudar com isso?\" (colaboração)",
-            "\"Já passei por isso antes, sei o que fazer\" (experiência)"
+            "Vamos resolver isso agora!\" (ação imediata)",
+            "Deixa eu entender o que aconteceu...\" (análise)",
+            "Quem pode me ajudar com isso?\" (colaboração)",
+            "Já passei por isso antes, sei o que fazer\" (experiência)"
         ]
     },
 

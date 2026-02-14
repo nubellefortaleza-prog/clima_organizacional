@@ -3,7 +3,7 @@
    ============================================ */
 
 // ⚙️ CONFIGURAÇÃO - ALTERE A SENHA AQUI
-const SENHA_ADMIN = 'admin123';
+const SENHA_ADMIN = 'doido123';
 
 // Chave para armazenar sessão
 const AUTH_KEY = 'sistema_avaliacao_admin_logado';
